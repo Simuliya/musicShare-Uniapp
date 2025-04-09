@@ -129,7 +129,6 @@ export default {
 .login {
   margin: 20% auto;
   width: 80%;
-  height: 30rem;
 
   h1 {
     text-align: center;

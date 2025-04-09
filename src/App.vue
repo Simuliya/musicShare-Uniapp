@@ -14,5 +14,5 @@ export default {
 
 <style lang="scss">
 html {
-  font-size: 26.66666666vw;
+  font-size: 37.5px;
 }</style>

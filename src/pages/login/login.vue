@@ -41,8 +41,6 @@ export default {
     if (getToken() !== "") {
       uni.reLaunch({
         url: '/pages/me/me',
-        fail: function (e) {
-        }
       })
     }
     this.getCode();
@@ -102,17 +100,15 @@ export default {
 
 <template>
   <div class="login">
-    <h1>登录</h1>
+    <h1>欢迎来到音乐分享论坛</h1>
     <uni-forms :model="loginForm" :rules="loginRules" ref="loginForm">
       <!--      账号-->
       <uni-forms-item name="username">
-        <uni-icons type="auth" size="32px"></uni-icons>
-        <uni-easyinput type="text" placeholder="请输入账号" v-model="loginForm.username"/>
+        <uni-easyinput prefixIcon="auth" type="text" placeholder="请输入账号" v-model="loginForm.username"/>
       </uni-forms-item>
       <!--      密码-->
       <uni-forms-item name="password">
-        <uni-icons type="locked" size="32px"></uni-icons>
-        <uni-easyinput type="password" placeholder="请输入密码" v-model="loginForm.password"/>
+        <uni-easyinput prefixIcon="locked" type="password" placeholder="请输入密码" v-model="loginForm.password"/>
       </uni-forms-item>
       <!--      验证码-->
       <uni-forms-item name="code">
@@ -131,15 +127,14 @@ export default {
 
 <style scoped lang="scss">
 .login {
-  margin: 50% auto;
+  margin: 20% auto;
   width: 80%;
   height: 30rem;
-  border: 1px solid #000;
 
   h1 {
     text-align: center;
     font-size: 20px;
-    margin: 3rem;
+    margin: 3rem auto;
   }
 }
 
@@ -149,8 +144,9 @@ export default {
   align-items: center;
 }
 .login-code-img {
-  width: 100px;
-  height: 40px;
+  margin-left: 1rem;
+  width: 5rem;
+  height: 2.4rem;
 }
 
 </style>

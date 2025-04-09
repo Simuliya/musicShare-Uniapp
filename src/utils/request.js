@@ -1,12 +1,9 @@
 import axios from "axios";
 import {getToken, removeToken} from "@/utils/auth"
-function toast(content) {
-    uni.showToast({
-        icon: 'none',
-        title: content
-    })
-}
-const baseUrl = "http://localhost:8160"
+import {toast} from '@/utils/common'
+
+
+export const baseUrl = "http://localhost:8160"
 // 创建请求实例
 const instance = axios.create({
     // 默认配置
@@ -29,7 +26,6 @@ instance.interceptors.request.use(config => {
     },
     error => {
         // 对请求错误做些什么
-        // console.log('发请求错误', error)
         uni.showToast({
             icon: 'error',
             title: '后端接口请求异常'
@@ -42,7 +38,8 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(
     //响应成功后
     response => {
-        // console.log('响应成功后', response)
+        uni.hideLoading()
+
         // 未设置状态码则默认成功状态
         const code = response.data.code || 200;
         // 获取错误信息
@@ -76,12 +73,13 @@ instance.interceptors.response.use(
         return response
     },
     error => {
+        uni.hideLoading()
+
         // 对响应错误做些什么
         uni.showToast({
             icon: 'error',
             title: '后端接口响应异常'
         })
-        // console.log('响应错误后', error)
         return Promise.reject(error)
     }
 )

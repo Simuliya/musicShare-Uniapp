@@ -1,7 +1,7 @@
 <script>
 import {isLogin, removeToken, setUserId} from "@/utils/auth";
 import {handleUrl} from "@/utils/musicShare";
-import userInfo from "@/api/userInfo";
+import userInfoApi from "@/api/userInfo";
 
 export default {
   name: "me",
@@ -21,7 +21,12 @@ export default {
     handleUrl,
     toLogin() {
       uni.reLaunch({
-        url: '/pages/login/login'
+          url: '/pages/login/login'
+      })
+    },
+    toProfile() {
+      uni.navigateTo({
+        url: '/pages/me/profile'
       })
     },
     quit() {
@@ -30,12 +35,12 @@ export default {
     },
     async getUserInfo() {
       try {
-        const {data} = await userInfo.getUserInfo()
-        console.log(data)
+        const {data} = await userInfoApi.getUserInfo()
+        //console.log(data)
         this.user = data.user
         this.nickName = data.user.nickName
         this.avatar = handleUrl(data.user.avatar)
-        console.log(handleUrl(this.avatar))
+        //console.log(handleUrl(this.avatar))
         setUserId(data.user.userId)
         return "success"
       } catch (error) {
@@ -54,7 +59,7 @@ export default {
       <img :src="handleUrl(avatar)" alt="">
       <p>{{ nickName }}</p>
     </div>
-    <button>
+    <button @click='toProfile'>
       <image src="../../static/icon/set-up.svg"></image>
       更改账户信息
     </button>

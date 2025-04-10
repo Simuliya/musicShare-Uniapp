@@ -144,7 +144,7 @@ export default {
                        v-model="registerForm.confirmPassword"/>
       </uni-forms-item>
       <!--      验证码-->
-      <uni-forms-item name="code">
+      <uni-forms-item name="code" v-if="captchaEnabled">
         <div class="login-code">
           <uni-easyinput v-model="registerForm.code" auto-complete="off" placeholder="验证码"
                          @keyup.enter.native="handleRegister"/>

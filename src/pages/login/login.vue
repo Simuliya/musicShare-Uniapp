@@ -111,7 +111,7 @@ export default {
         <uni-easyinput prefixIcon="locked" type="password" placeholder="请输入密码" v-model="loginForm.password"/>
       </uni-forms-item>
       <!--      验证码-->
-      <uni-forms-item name="code">
+      <uni-forms-item name="code" v-if="captchaEnabled">
         <div class="login-code">
 
         <uni-easyinput v-model="loginForm.code" auto-complete="off" placeholder="验证码" @keyup.enter.native="handleLogin"/>

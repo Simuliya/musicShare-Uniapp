@@ -20,7 +20,7 @@ instance.interceptors.request.use(config => {
         })
         const isToken = config.headers['isToken'] === false
         if (getToken() && !isToken) {
-            config.header['Authorization'] = 'Bearer ' + getToken()
+            config.headers['Authorization'] = 'Bearer ' + getToken()
         }
         return config
     },

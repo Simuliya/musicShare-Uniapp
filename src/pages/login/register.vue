@@ -38,19 +38,19 @@ export default {
           rules: [
             {required: true, errorMessage: "请输入您的账号"},
             {
-              min: 2,
-              max: 20,
+              minLength: 2,
+              maxLength: 20,
               errorMessage: "用户账号长度必须介于 2 和 20 之间",
             },
             {validateFunction: checkUserName},
           ]
         },
         password: {
-          rulers: [
+          rules: [
             {required: true, errorMessage: "请输入您的密码"},
             {
-              min: 5,
-              max: 20,
+              minLength: 5,
+              maxLength: 20,
               errorMessage: "用户密码长度必须介于 5 和 20 之间",
             },
           ]

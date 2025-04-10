@@ -6,21 +6,18 @@
     <div :class="{ active: profileType === 0 }" @click="profileType = 0">个人信息</div>
     <div :class="{ active: profileType === 1 }" @click="profileType = 1">修改密码</div>
   </div>
-  <user-info :user="user"></user-info>
-<!--  <reset-pwd></reset-pwd>-->
+  <user-info v-if="profileType === 0" :user="user"></user-info>
+  <reset-pwd v-else></reset-pwd>
 </template>
 
 <script>
 import userInfoApi from "@/api/userInfo";
 import {handleUrl} from "@/utils/musicShare";
 import resetPwd from "@/comment/profile/resetPwd.vue";
-import userInfo from "@/comment/profile/userInfo.vue";
-import UserInfo from "@/comment/profile/userInfo.vue";
-
+import userInfo from "@/comment/profile/userInfo.vue"
 export default {
   name: "Profile",
-  components: {UserInfo},
-  comment: {
+  components: {
     userInfo,
     resetPwd
   },

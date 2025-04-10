@@ -26,16 +26,15 @@ import userInfoApi from "@/api/userInfo";
 import {checkEmailUnique} from "@/api/login";
 
 export default {
-  components: {},
   props: {
     user: {},
   },
   data() {
     const checkEmail = (rule, value, data, callback) => {
-      //判断用户名是否存在
+      //判断邮箱是否存在
       checkEmailUnique(value).then((response) => {
         if (response.data !== true) {
-          callback(new Error("邮箱已经存在"));
+          callback("邮箱已经存在");
 
         } else {
           return true
@@ -51,31 +50,31 @@ export default {
       rules: {
         nickName: {
           rules: [
-            {required: true, message: "用户昵称不能为空"},
+            {required: true, errorMessage: "用户昵称不能为空"},
             {
               min: 2,
               max: 20,
-              message: "用户昵称长度必须介于 2 和 20 之间"
+              errorMessage: "用户昵称长度必须介于 2 和 20 之间"
             },
           ]
         },
         phonenumber: {
           rules: [
-            {required: true, message: "手机号码不能为空"},
+            {required: true, errorMessage: "手机号码不能为空"},
             {
               pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/,
-              message: "请输入正确的手机号码",
+              errorMessage: "请输入正确的手机号码",
             },
           ]
         },
         email: {
           rules: [
-            {required: true, message: "邮箱地址不能为空"},
+            {required: true, errorMessage: "邮箱地址不能为空"},
             {
               pattern: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
-              message: "请输入正确的邮箱地址",
+              errorMessage: "请输入正确的邮箱地址",
             },
-            {validator: checkEmail}
+            {validateFunction: checkEmail}
           ]
         },
       },
@@ -86,7 +85,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$refs["form"].validate((valid) => {
+      this.$refs.form.validate().then(valid => {
         userInfoApi.updateUserProfile(this.user).then((response) => {
           uni.showToast({
             title: "修改成功",

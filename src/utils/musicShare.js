@@ -1,7 +1,7 @@
 import {baseUrl} from "@/utils/request";
 import {parseTime} from '@/utils/common.js'
 
-export function handleCampusUrl(avatar) {
+export function handleUrl(avatar) {
     if (typeof(avatar) !== 'undefined') {
         if (avatar.trim().toLowerCase().substring(0, 4) == "http") {
             return avatar;

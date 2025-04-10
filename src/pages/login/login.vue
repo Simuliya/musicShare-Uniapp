@@ -81,6 +81,7 @@ export default {
             }, 2000)
           }
         });
+        this.loginForm.code = ""
       }).catch(errors => {
       })
 
@@ -114,7 +115,7 @@ export default {
       <uni-forms-item name="code" v-if="captchaEnabled">
         <div class="login-code">
 
-        <uni-easyinput v-model="loginForm.code" auto-complete="off" placeholder="验证码" @keyup.enter.native="handleLogin"/>
+        <uni-easyinput v-model="loginForm.code" auto-complete="off" placeholder="验证码" @confirm="handleLogin"/>
           <img :src="codeUrl" @click="getCode" class="login-code-img" alt=""/>
         </div>
       </uni-forms-item>

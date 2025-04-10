@@ -107,7 +107,7 @@ export default {
           });
           //跳转到登录
           uni.reLaunch({
-            url: '/pages//pages/login/login',
+            url: '/pages/login/login',
             fail: function (e) {
             }
           })
@@ -118,6 +118,7 @@ export default {
             }, 2000)
           }
         });
+        this.registerForm.code = ""
       }).catch(errors => {
       })
 

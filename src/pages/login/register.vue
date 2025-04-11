@@ -128,7 +128,7 @@ export default {
 </script>
 
 <template>
-  <div class="register">
+  <view class="register">
     <h1>加入我们吧！</h1>
     <uni-forms :model="registerForm" ref="form">
       <!--      账号-->
@@ -146,17 +146,17 @@ export default {
       </uni-forms-item>
       <!--      验证码-->
       <uni-forms-item name="code" v-if="captchaEnabled">
-        <div class="login-code">
+        <view class="login-code">
           <uni-easyinput v-model="registerForm.code" auto-complete="off" placeholder="验证码"
                          @keyup.enter.native="handleRegister"/>
           <img :src="codeUrl" @click="getCode" class="login-code-img" alt=""/>
-        </div>
+        </view>
       </uni-forms-item>
       <button @click="handleRegister()">注 册</button>
       <p style="color: blue;text-align: right " @click="toLogin">已有账号？去登录</p>
 
     </uni-forms>
-  </div>
+  </view>
 </template>
 <style scoped>
 .register {
@@ -165,8 +165,8 @@ export default {
 
   h1 {
     text-align: center;
-    font-size: 20px;
-    margin: 3rem auto;
+    font-size: 40rpx;
+    margin: 96rpx auto;
   }
 }
 
@@ -177,8 +177,8 @@ export default {
 }
 
 .login-code-img {
-  margin-left: 1rem;
-  width: 5rem;
-  height: 2.4rem;
+  margin-left: 32rpx;
+  width: 160rpx;
+  height: 75rpx;
 }
 </style>

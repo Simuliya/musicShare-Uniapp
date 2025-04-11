@@ -54,16 +54,16 @@ export default {
 </script>
 
 <template>
-  <div class="header" v-if="isLogin()">
-    <div class="user">
-      <img :src="handleUrl(avatar)" alt="">
+  <view class="header" v-if="isLogin()">
+    <view class="user">
+      <image :src="handleUrl(avatar)" alt=""></image>
       <p>{{ nickName }}</p>
-    </div>
+    </view>
     <button @click='toProfile'>
       <image src="../../static/icon/set-up.svg"></image>
       更改账户信息
     </button>
-  </div>
+  </view>
   <button @click='quit' v-if="isLogin()">退出登录</button>
   <button @click='toLogin' v-else>请先登录</button>
 
@@ -73,7 +73,7 @@ export default {
 <style scoped lang="scss">
 .header {
   width: 100%;
-  height: 10rem;
+  height: 320rpx;
   background-color: #007aff;
   background-image: url("@/static/background.png");
   display: flex;
@@ -81,27 +81,27 @@ export default {
   align-items: center;
 
   .user {
-    font-size: 1.5rem;
-    margin: 0 2rem;
+    font-size: 48rpx;
+    margin: 0 64rpx;
     color: white;
   }
 
   button {
-    height: 2rem;
+    height: 64rpx;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 32rpx;
 
     image {
-      width: 1rem;
-      height: 1rem;
+      width: 50rpx;
+      height: 50rpx;
     }
   }
 }
-.user img {
-  width: 5rem;
-  height: 5rem;
+.user image{
+  width: 160rpx;
+  height: 160rpx;
   border-radius: 50%;
 }
 </style>

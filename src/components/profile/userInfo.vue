@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <view class="container">
     <uni-forms ref="form" :model="user" :rules="rules">
       <uni-forms-item label="用户昵称" name="nickName">
         <uni-easyinput v-model="user.nickName" maxlength="30"/>
@@ -18,7 +18,7 @@
         <button type="primary" @click="submit">保存</button>
       </uni-forms-item>
     </uni-forms>
-  </div>
+  </view>
 </template>
 
 <script>
@@ -100,6 +100,6 @@ export default {
 </script>
 <style>
 .container {
-  padding: 20px;
+  padding: 40rpx;
 }
 </style>

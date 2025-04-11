@@ -1,11 +1,11 @@
 <template>
-  <div class="user">
-    <img :src="handleUrl(user.avatar)" alt="">
-  </div>
-  <div class="profile-button">
-    <div :class="{ active: profileType === 0 }" @click="profileType = 0">个人信息</div>
-    <div :class="{ active: profileType === 1 }" @click="profileType = 1">修改密码</div>
-  </div>
+  <view class="user">
+    <image :src="handleUrl(user.avatar)" alt=""></image>  
+  </view>
+  <view class="profile-button">
+    <view :class="{ active: profileType === 0 }" @click="profileType = 0">个人信息</view>
+    <view :class="{ active: profileType === 1 }" @click="profileType = 1">修改密码</view>
+  </view>
   <user-info v-if="profileType === 0" :user="user"></user-info>
   <reset-pwd v-else></reset-pwd>
 </template>
@@ -52,9 +52,9 @@ export default {
   justify-content: center;
   align-items: center;
 
-  img {
-    width: 5rem;
-    height: 5rem;
+  image {
+    width: 180rpx;
+    height: 180rpx;
     border-radius: 50%;
   }
 }
@@ -62,12 +62,12 @@ export default {
 .profile-button {
   display: flex;
 
-  div {
+  view {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3rem;
+    height: 96rpx;
   }
 }
 .active {

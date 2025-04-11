@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <view class="container">
     <uni-forms ref="form" :model="user" :rules="rules">
       <uni-forms-item label="旧密码" name="oldPassword">
         <uni-easyinput v-model="user.oldPassword" placeholder="请输入旧密码" type="password"/>
@@ -17,7 +17,7 @@
     {{ user.newPassword }}
     {{ user.confirmPassword }}
     {{ user.oldPassword }}
-  </div>
+  </view>
 </template>
 <script>
 import userInfoApi from "@/api/userInfo";
@@ -81,6 +81,6 @@ export default {
 </script>
 <style>
 .container {
-  padding: 20px;
+  padding: 40rpx;
 }
 </style>

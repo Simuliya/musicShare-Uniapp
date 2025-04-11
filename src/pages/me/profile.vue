@@ -46,7 +46,7 @@ export default {
 </script>
 
 
-<style scoped lang="scss">
+<style lang="scss">
 .user {
   display: flex;
   justify-content: center;

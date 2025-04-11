@@ -8,7 +8,7 @@ export default function ajax(config) {
         url = '',
         method = 'get',
         data = {},
-        params = {},  // 👈 增加支持 params
+        params = {},  // 增加支持 params
         header = {},
     } = config
 

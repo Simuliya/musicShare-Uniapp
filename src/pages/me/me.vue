@@ -70,7 +70,7 @@ export default {
 
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .header {
   width: 100%;
   height: 320rpx;

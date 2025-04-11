@@ -101,7 +101,7 @@ export default {
 
 <template>
   <view class="login">
-    <h1>欢迎来到音乐分享论坛</h1>
+    <text class="title">欢迎来到音乐分享论坛</text>
     <uni-forms :model="loginForm" :rules="loginRules" ref="loginForm">
       <!--      账号-->
       <uni-forms-item name="username">
@@ -126,12 +126,13 @@ export default {
   </view>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .login {
   margin: 20% auto;
   width: 80%;
 
-  h1 {
+  .title {
+    display: block;
     text-align: center;
     font-size: 40rpx;
     margin: 96rpx auto;

@@ -129,7 +129,7 @@ export default {
 
 <template>
   <view class="register">
-    <h1>加入我们吧！</h1>
+    <text class="title">加入我们吧！</text>
     <uni-forms :model="registerForm" ref="form">
       <!--      账号-->
       <uni-forms-item name="username">
@@ -158,12 +158,13 @@ export default {
     </uni-forms>
   </view>
 </template>
-<style scoped>
+<style lang="scss">
 .register {
   margin: 20% auto;
   width: 80%;
 
-  h1 {
+  .title {
+    display: block;
     text-align: center;
     font-size: 40rpx;
     margin: 96rpx auto;

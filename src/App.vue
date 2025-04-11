@@ -13,6 +13,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "vk-uview-ui/index.scss";
+
 html {
   font-size: 37.5px;
 }</style>

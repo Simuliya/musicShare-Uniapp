@@ -6,6 +6,14 @@ export default defineConfig({
   plugins: [
     uni(),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+  `,
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

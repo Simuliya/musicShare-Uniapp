@@ -2,46 +2,39 @@
   <view>
     <view v-if="categoryList!=null">
       <u-sticky bgColor="#fff">
-        <u-tabs :list="categoryList" keyName="categoryName" @click="clickTabs"></u-tabs>
+        <u-tabs :list="categoryList"  name="categoryName"  @change="clickTabs"></u-tabs>
       </u-sticky>
     </view>
+    {{contentObj}}
 
-    <view class="index-bg">
-
-      <u-loading-page :loading="loading"></u-loading-page>
-      <view class="campus-main">
-        <view class="woo-box-flex">
-          <!-- 消息盒子 -->
-          <view class="content-t">
-            <scroll-list ref="contentObj" :option="option" @load="getContent" @refresh="refresh">
-              <view class="content-box" v-for="(item, key) in contentObj" :key="key">
-                <Content :contentObj="item" :loveContentIds="loveContentIds" @openPopup="openPopup">
-                </Content>
-              </view>
-            </scroll-list>
-          </view>
+    <view class="campus-main">
+      <view class="woo-box-flex">
+        <!-- 消息盒子 -->
+        <view class="content-t">
+          <scroll-list ref="contentObj" :option="option" @load="getContent" @refresh="refresh">
+            <view class="content-box" v-for="(item, key) in contentObj" :key="key">
+              <Content :contentObj="item" :loveContentIds="loveContentIds" @openPopup="openPopup">
+              </Content>
+            </view>
+          </scroll-list>
         </view>
-
       </view>
     </view>
+  </view>
 
     <!-- 拓展点击弹出层 -->
     <view>
       <ArrowDown :contentObj="popupData.contentObj" :show="popupData.show" :time="popupData.time"></ArrowDown>
     </view>
-  </view>
 
 </template>
 
 <script>
+//api
 import touristApi from "@/api/tourist";
-
-import {
-  isLogin
-} from "@/utils/auth";
 //引用组件
 import Content from "@/components/content/index";
-import ArrowDown from "@/components/content/arrowDown";
+import ArrowDown from "@/components/content/ArrowDown";
 
 export default {
   components: {
@@ -49,8 +42,7 @@ export default {
     ArrowDown
   },
   data() {
-    return {
-      option: {
+    return {option: {
         page: 1,
         size: 5,
         auto: true,
@@ -68,8 +60,6 @@ export default {
         pageNum: 1,
         categoryId: null,
       },
-      //是否加载
-      loading: true,
       total: 0,
       //拓展弹出层
       popupData: {},
@@ -77,25 +67,23 @@ export default {
   },
 
   //创建的时候自动调用
-  onReady() {
+  onReady(){
     this.getAllCategorys();
-    // this.getContent();
   },
   //创建后
   mounted() {
-    // this.contentVo.categoryId = 0;
+    this.contentVo.categoryId = 0;
   },
   methods: {
 
-    clickTabs(item) {
-      this.contentVo.categoryId = item.categoryId;
+    clickTabs(index) {
+      this.contentVo.categoryId = this.categoryList[index].categoryId;
       this.refresh();
     },
     //获取全部分类
     getAllCategorys() {
-      touristApi
-          .getCategoryList()
-          .then((response) => {
+      touristApi.getCategoryList().then((response) => {
+        console.log(response)
             this.categoryList = [];
             for (let item of response.data.data) {
 
@@ -121,7 +109,6 @@ export default {
             };
             this.total = parseInt(data.total);
             this.loveContentIds = data.loveContentIds;
-            this.loading = false;
 
             this.$refs.contentObj.loadSuccess({
               list: this.contentObj,
@@ -131,8 +118,6 @@ export default {
           .catch(({
                     ...error
                   }) => {
-            this.loading = false;
-            this.$refs.contentObj.loadFail()
           });
 
     },
@@ -140,11 +125,7 @@ export default {
     refresh(paging) {
       this.contentVo.pageNum = 1;
 
-      touristApi
-          .getContent(this.contentVo)
-          .then(({
-                   data
-                 }) => {
+      touristApi.getContent(this.contentVo).then(({data}) => {
             this.contentObj = data.rows;
             this.total = parseInt(data.total);
             this.loveContentIds = data.loveContentIds;

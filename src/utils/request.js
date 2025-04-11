@@ -8,15 +8,23 @@ export default function ajax(config) {
         url = '',
         method = 'get',
         data = {},
+        params = {},  // 👈 增加支持 params
         header = {},
     } = config
 
-    // 开启加载
+    // 拼接 URL 参数
+    function buildUrlWithParams(url, paramsObj) {
+        if (!paramsObj || Object.keys(paramsObj).length === 0) return url
+        const queryString = Object.entries(paramsObj)
+            .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
+            .join('&')
+        return url.includes('?') ? `${url}&${queryString}` : `${url}?${queryString}`
+    }
+
     uni.showLoading({
         title: '加载中...',
     })
 
-    // 默认 headers，加上 Authorization
     const isToken = header['isToken'] === false
     const token = getToken()
     const finalHeaders = {
@@ -28,13 +36,18 @@ export default function ajax(config) {
         finalHeaders['Authorization'] = 'Bearer ' + token
     }
 
+    const upperMethod = method.toUpperCase()
+    const finalUrl = buildUrlWithParams(baseUrl + url, params)
+
     return new Promise((resolve, reject) => {
         uni.request({
-            url: baseUrl + url,
-            method: method.toUpperCase(),
-            data,
+            url: finalUrl,
+            method: upperMethod,
+            data: upperMethod === 'POST' ? data : {}, // 非 POST 请求就不传 body
             header: finalHeaders,
             success: (res) => {
+                uni.hideLoading()
+
                 const code = res.data.code || 200
                 const msg = res.data.msg || '请求异常'
 
@@ -65,6 +78,7 @@ export default function ajax(config) {
                 }
             },
             fail: (err) => {
+                uni.hideLoading()
                 uni.showToast({
                     icon: 'error',
                     title: '后端接口请求异常',
@@ -72,8 +86,7 @@ export default function ajax(config) {
                 reject(err)
             },
             complete: () => {
-                uni.hideLoading()
-            },
+            }
         })
     })
 }

@@ -13,8 +13,8 @@
 <script>
 import userInfoApi from "@/api/userInfo";
 import {handleUrl} from "@/utils/musicShare";
-import resetPwd from "@/comment/profile/resetPwd.vue";
-import userInfo from "@/comment/profile/userInfo.vue"
+import resetPwd from "@/components/profile/resetPwd.vue";
+import userInfo from "@/components/profile/userInfo.vue"
 export default {
   name: "Profile",
   components: {
@@ -35,11 +35,9 @@ export default {
     async getUserInfo() {
       try {
         const {data} = await userInfoApi.getUserInfo()
-        console.log(data)
         this.user = data.user
         return "success"
       } catch (error) {
-        console.error("获取用户信息失败：", error)
         throw error
       }
     }

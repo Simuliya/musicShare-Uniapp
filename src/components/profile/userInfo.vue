@@ -91,9 +91,9 @@ export default {
             title: "修改成功",
             icon: "success",
           });
-        });
+        }).catch(err => {});
         
-      });
+      }).catch(err=>{});
     },
   },
 };

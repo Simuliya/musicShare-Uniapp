@@ -34,7 +34,7 @@ export function checkUserNameUnique(userName) {
   })
 }
 
-//校验用户名称是否唯一
+//校验邮箱是否唯一
 export function checkEmailUnique(email) {
   return request({
     url: '/emailUnique',

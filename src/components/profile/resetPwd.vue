@@ -14,6 +14,9 @@
         <button type="primary" @click="submit">保存</button>
       </uni-forms-item>
     </uni-forms>
+    {{ user.newPassword }}
+    {{ user.confirmPassword }}
+    {{ user.oldPassword }}
   </div>
 </template>
 <script>
@@ -30,7 +33,7 @@ export default {
     };
     return {
       user: {
-        oldPassword: "1111",
+        oldPassword: "",
         newPassword: "",
         confirmPassword: ""
       },
@@ -57,18 +60,19 @@ export default {
     };
   },
   onReady() {
-     this.$refs.form.setRules(this.rules)
+    this.$refs.form.setRules(this.rules)
   },
   methods: {
     submit() {
       this.$refs.form.validate().then(valid => {
-        console.log(valid);
         userInfoApi.updateUserPwd(this.user.oldPassword, this.user.newPassword).then(response => {
           uni.showToast({
             title: "修改成功",
             icon: "success",
           });
-        });
+        }).catch(err => {
+        })
+      }).catch(err => {
       });
     },
 
